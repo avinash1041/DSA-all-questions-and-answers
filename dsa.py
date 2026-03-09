@@ -134,6 +134,27 @@ def is_valid_parentheses(s):
 # print(is_valid_parentheses("([)]"))     # Output: False 
 # print(is_valid_parentheses("{[]}"))     # Output: True 
 
+
+mydict = {"a":1,"b":{"d":3,"e":5}}
+
+expected_output = {"a":1,"b.d":3,"b.e":5}
+
+
+def flatten_dict(d,parent='',sep='.'):
+    items = {}
+
+    for key,val in d.items():
+        new_key = parent + sep + key if parent else key
+        if isinstance(val, dict):
+            items.update(flatten_dict(val,new_key))
+        else:
+            items[new_key] = val
+
+    return items
+
+
+print(flatten_dict(mydict))
+
 def are_anagrams(s1,s2):
     if len(s1) != len(s2):
         return False
