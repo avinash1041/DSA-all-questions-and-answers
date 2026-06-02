@@ -1,3 +1,52 @@
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+visited = set()
+
+def dfs(node):
+    if node not in visited:
+        print(node, end=' ')
+        visited.add(node)
+    
+    for neigh in graph[node]:
+        dfs(neigh)
+        
+        
+dfs('A')
+
+
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+def bfs(start):
+    queue = deque([start])
+    visited = set()
+
+    while queue:
+        node = queue.popleft()
+
+        if node not in visited:
+            print(node, end=" ")
+            visited.add(node)
+
+            queue.extend(graph[node])
+
+bfs('A')
+
 def longest_common_prefix(strs):
     if not strs:
         return ""
